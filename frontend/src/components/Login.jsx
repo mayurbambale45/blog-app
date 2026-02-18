@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import API from '../api/api';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -12,13 +12,13 @@ export default function Login() {
     e.preventDefault();
     setError('');
     try {
-      // API expects email and password
-      const res = await API.post('/auth/login', { email, password });
+      // API expects username and password
+      const res = await API.post('/auth/login', { username, password });
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.user)); // Assuming API returns user object
       window.location.href = '/'; // Using full reload to ensure auth state updates everywhere
     } catch (err) {
-      setError('Invalid email or password');
+      setError('Invalid username or password');
     }
   };
 
@@ -38,17 +38,17 @@ export default function Login() {
           {error && <div className="text-red-500 text-sm text-center">{error}</div>}
           <div className="rounded-md shadow-sm -space-y-px">
             <div className="mb-4">
-              <label htmlFor="email-address" className="sr-only">Email address</label>
+              <label htmlFor="username" className="sr-only">Username</label>
               <input
-                id="email-address"
-                name="email"
-                type="email"
-                autoComplete="email"
+                id="username"
+                name="username"
+                type="text"
+                autoComplete="username"
                 required
                 className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
+                placeholder="Username"
+                value={username}
+                onChange={e => setUsername(e.target.value)}
               />
             </div>
             <div>

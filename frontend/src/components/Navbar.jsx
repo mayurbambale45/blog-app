@@ -4,7 +4,16 @@ import { Link, useNavigate } from 'react-router-dom';
 const Navbar = () => {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    let user = {};
+    try {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser && storedUser !== 'undefined') {
+            user = JSON.parse(storedUser);
+        }
+    } catch (error) {
+        console.error("Error parsing user data:", error);
+        localStorage.removeItem('user'); // Clear invalid data
+    }
 
     const handleLogout = () => {
         localStorage.removeItem('token');

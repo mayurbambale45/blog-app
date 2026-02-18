@@ -1,59 +1,91 @@
-# BlogFlow - Full Stack Blog Application
+# BlogFlow - Modern Full Stack Blog Application
 
-A modern, responsive, and feature-rich blogging platform built with the MySQL, Express, React, and Node.js (PERN-style) stack.
+A premium, responsive, and feature-rich blogging platform built with the **PERN** stack (PostgreSQL, Express, React, Node.js). This application features a modern UI designed with Tailwind CSS and a robust backend API.
 
-## 🚀 Recent Updates
-- **New UI**: Completely revamped interface using **Tailwind CSS** for a premium, clean look.
-- **Responsive Design**: Mobile-first layout optimized for all devices.
-- **Enhanced UX**: Loading states, hero sections, and seamless navigation.
-- **Create/Edit**: Distraction-free writing experience.
+## 🚀 Tech Stack
 
-## Unpacking the Stack
-This application is built using a robust full-stack architecture:
+### Frontend
+- **React (Vite)**: Lightning-fast frontend tooling and library for building user interfaces.
+- **Tailwind CSS**: Utility-first CSS framework for rapid, beautiful UI development.
+- **React Router DOM**: Client-side routing for a seamless single-page application (SPA) experience.
+- **Axios**: Promise-based HTTP client for API requests.
 
-- **Frontend**: 
-  - **React (Vite)**: For a fast, interactive user interface.
-  - **Tailwind CSS**: For utility-first, custom design without the bloat.
-  - **React Router**: For seamless single-page application navigation.
-  - **Axios**: For handling HTTP requests.
-
-- **Backend**:
-  - **Node.js**: The runtime environment.
-  - **Express**: The web framework for handling API routes (`/api/auth`, `/api/posts`, `/api/comments`).
-  - **MySQL**: Relational database for structured data storage (Users, Posts, Comments).
-  - **JWT**: JSON Web Tokens for secure authentication.
+### Backend
+- **Node.js**: JavaScript runtime environment.
+- **Express.js**: Fast, unopinionated web framework for Node.js.
+- **PostgreSQL**: Powerful open-source relational database system.
+- **pg (node-postgres)**: PostgreSQL client for Node.js.
+- **JWT (JSON Web Tokens)**: Secure method for representing claims securely between two parties.
+- **Bcrypt.js**: Library for hashing passwords.
+- **Dotenv**: Module for loading environment variables.
+- **Nodemon**: Utility that monitors for any changes in your source and automatically restarts your server.
 
 ## ✨ Features
-1.  **User Authentication**: Secure Login and Registration (JWT-based).
-2.  **Blog Management**: Create, Read, Update, and Delete blog posts.
-3.  **Comments**: Interactive comment section on each post.
-4.  **Modern Dashboard**: View all posts in a responsive grid layout.
+1.  **Secure Authentication**: User Registration and Login using JWT and password hashing.
+2.  **CRUD Operations**: Create, Read, Update, and Delete blog posts.
+3.  **Comments System**: Interactive commenting on posts.
+4.  **Responsive Design**: Mobile-first layout that looks great on all devices.
+5.  **Rich UI/UX**: Loading states, glassmorphism effects, and smooth transitions.
 
-## 🛠️ How to Run
+## 🛠️ Project Structure
+
+```
+blog-app/
+├── backend/            # Express.js Server & API
+│   ├── controllers/    # Request handlers (Auth, Post, Comment)
+│   ├── db/             # Database initialization scripts
+│   ├── middlewares/    # Custom middlewares
+│   ├── models/         # Database connection configuration
+│   ├── routes/         # API Route definitions
+│   └── server.js       # Entry point
+│
+└── frontend/           # React Application
+    ├── src/
+    │   ├── api/        # Axios instance configuration
+    │   ├── components/ # Reusable UI components (Navbar, Login, etc.)
+    │   ├── layouts/    # Page layouts
+    │   └── App.jsx     # Main application component
+```
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js installed
-- MySQL Server running
+- **Node.js** (v14+)
+- **PostgreSQL** installed and running locally.
 
-### 1. Backend Setup
+### 1. Database Setup
+1.  Create a PostgreSQL database (or let the init script do it).
+2.  Configure your environment variables in `backend/.env`:
+    ```env
+    PORT=5000
+    DB_HOST=localhost
+    DB_USER=your_postgres_user
+    DB_PASSWORD=your_postgres_password
+    DB_NAME=blogapp
+    JWT_SECRET=your_secret_key
+    ```
+3.  Initialize the database tables automatically:
+    ```bash
+    cd backend
+    npm run db:init
+    ```
+
+### 2. Backend
+Start the backend server:
 ```bash
 cd backend
-npm install
-node server.js
+npm start
 ```
-*Ensure your `.env` file is configured with correct DB credentials.*
 
-### 2. Frontend Setup
+### 3. Frontend
+Start the React development server:
 ```bash
 cd frontend
-npm install
+npm install  # if not already installed
 npm run dev
 ```
 
-Visit `http://localhost:5173` to explore the app!
+Visit `http://localhost:5173` to view the application.
 
-## 📝 Sample Data
-If you are running this for the first time:
-1. Register a new account.
-2. Click "Write Post" to create your first story!
-3. The app is designed to look great even with just one post.
+## 📝 License
+This project is open source and available under the [MIT License](LICENSE).

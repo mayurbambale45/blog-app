@@ -1,40 +1,13 @@
-mysql -u root -p
-password:
+# Database Setup (PostgreSQL)
 
-CREATE DATABASE blog_app;
-
-USE blog_app;
-
--- Users Table
-CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(255) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL
-);
-
--- Blog Posts Table
-CREATE TABLE posts (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
-  content TEXT NOT NULL,
-  user_id INT,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-);
-
--- Comments Table
-CREATE TABLE comments (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  content TEXT NOT NULL,
-  user_id INT,
-  post_id INT,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-  FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
-);
-
-
-Bash ->
- npm int -y
- npm install express mysql2 cors bcryptjs jsonwebtoken dotenv
- npm install nodemon --save-dev
+1. Make sure PostgreSQL is installed and running.
+2. Update `backend/.env` with your DB credentials if they differ from defaults (User: postgres, Pass: mayur, DB: blogapp).
+3. Run the initialization script to create the database and tables:
+   ```bash
+   cd backend
+   npm run db:init
+   ```
+4. Start the server:
+   ```bash
+   npm start
+   ```
