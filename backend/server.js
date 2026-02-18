@@ -11,12 +11,12 @@ const commentRoutes = require('./routes/commentRoutes');
 // --- UPDATED CORS CONFIGURATION ---
 const corsOptions = {
   origin: [
-    "https://blog-app07.netlify.app", // Your deployed Frontend (Netlify)
-    "http://localhost:5173",          // Your local development (Vite)
-    "http://localhost:3000"           // Common local alternative (just in case)
+    "https://blog-app07.netlify.app", 
+    "http://localhost:5173",          
+    "http://localhost:3000"          
   ],
-  methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
-  credentials: true // Allow cookies/headers if needed
+  methods: ["GET", "POST", "PUT", "DELETE"], 
+  credentials: true 
 };
 
 app.use(cors(corsOptions));
@@ -27,8 +27,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/comments', commentRoutes);
 
-// Database Connection Check (Optional but recommended for debugging)
-const pool = require('./db'); // Assuming your db.js exports the pool
+
+const pool = require('./models/db');
 pool.query('SELECT NOW()', (err, res) => {
   if (err) {
     console.error('Error connecting to the database:', err);
@@ -37,5 +37,5 @@ pool.query('SELECT NOW()', (err, res) => {
   }
 });
 
-const PORT = process.env.PORT || 10000; // Render usually uses port 10000
+const PORT = process.env.PORT || 10000; 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
